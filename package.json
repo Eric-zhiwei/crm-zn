@@ -1,5 +1,5 @@
 {
-  "name": "create-monorepo-zn",
+  "name": "crm-zn",
   "version": "0.0.4",
   "description": "Quickly create the directory structure for a monorepo project, built-in eslintconfig, stylelintconfig, tsconfig, husky, lint-staged",
   "keywords": [
@@ -12,12 +12,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eric-zhiwei/create-monorepo-zn.git"
+    "url": "git+https://github.com/Eric-zhiwei/crm-zn.git"
   },
   "license": "MIT",
   "author": "zhining",
   "type": "commonjs",
-  "packageManager": "pnpm@10",
+  "packageManager": "pnpm@10.27.0",
+  "engines": {
+    "node": ">=20.12.0"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -27,11 +30,13 @@
     }
   },
   "bin": {
-    "create-monorepo-zn": "dist/index.js"
+    "crm-zn": "./dist/index.js"
   },
   "files": [
     "templates",
-    "dist"
+    "dist",
+    "README.md",
+    "README.en.md"
   ],
   "scripts": {
     "clean": "rimraf dist",
@@ -44,13 +49,14 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "build": "pnpm run clean && pnpm run typecheck && tsup",
     "dev": "tsup --watch",
-    "prepublishOnly": "npm run build",
+    "prepack": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
     "release": "standard-version && npm publish --registry=https://registry.npmjs.org/",
     "postrelease": "git push --follow-tags origin main"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts}": [
-      "eslint --fix --max-warnings=0",
+      "eslint --fix --max-warnings=0 --no-warn-ignored",
       "prettier --write"
     ],
     "*.{json,md,yml,yaml}": [

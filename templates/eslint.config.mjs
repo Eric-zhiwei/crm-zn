@@ -10,18 +10,17 @@ const ignores = ['**/dist/**', '**/node_modules/**', '.*', 'scripts/**', '**/*.d
 export default defineConfig(
   // 通用配置
   {
-    ignores, // 忽略项
-    extends: [jseslint.configs.recommended, ...tseslint.configs.recommended, eslintConfigPrettier], // 继承规则
+    ignores,
+    extends: [jseslint.configs.recommended, ...tseslint.configs.recommended, eslintConfigPrettier],
     plugins: {
       prettier: eslintPluginPrettier,
     },
     languageOptions: {
-      ecmaVersion: 'latest', // ecma语法支持版本
-      sourceType: 'module', // 模块化类型
-      parser: tseslint.parser, // 解析器
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      parser: tseslint.parser,
     },
     rules: {
-      // 自定义
       '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
       'prettier/prettier': 'warn',
@@ -31,7 +30,6 @@ export default defineConfig(
   {
     ignores,
     files: ['apps/frontend/**/*.{ts,js,tsx,jsx}', 'packages/ui/**/*.{ts,js,tsx,jsx}'],
-    extends: [eslintConfigPrettier],
     languageOptions: {
       globals: {
         ...globals.browser,

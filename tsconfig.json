@@ -13,7 +13,7 @@
     // 告诉 TS 代码运行时可用的标准库能力。
     "lib": ["ES2020"],
 
-    // 指定源码根目录，方便保持输出目录结构稳定。
+    // 指定源码根目录，保证 dist/ 下不会多出一层 src/。
     "rootDir": "src",
 
     // 编译产物输出到 dist。
@@ -38,8 +38,9 @@
     "types": ["node"]
   },
 
-  // 这些文件会参与类型检查。
-  "include": ["src/**/*.ts", "tsup.config.ts"],
+  // 只检查 src 下的源码。tsup.config.ts 由 tsup 自己加载，
+  // 放进程序会因为落在 rootDir(src) 之外而触发 TS6059。
+  "include": ["src/**/*.ts"],
 
   // 这些目录不会参与编译或类型检查。
   "exclude": ["dist", "node_modules"]

@@ -37,10 +37,14 @@ export default [
       sourceType: 'module',
     },
   },
+  // 仅对 TypeScript 文件启用“带类型信息”的推荐规则集。
+  // flat config 不支持在配置对象里写 extends，需要把预设本身铺进数组。
+  ...tseslint.configs.recommendedTypeChecked.map((config) => ({
+    ...config,
+    files: ['src/**/*.ts'],
+  })),
   {
-    // 仅对 TypeScript 文件启用“带类型信息”的推荐规则集。
-    files: ['**/*.ts'],
-    extends: tseslint.configs.recommendedTypeChecked,
+    files: ['src/**/*.ts'],
     languageOptions: {
       parserOptions: {
         // 通过 TS Project Service 自动关联当前项目的 tsconfig。
@@ -55,6 +59,12 @@ export default [
       // 禁止悬空 Promise，避免异步错误被静默丢失。
       '@typescript-eslint/no-floating-promises': 'error',
     },
+  },
+  {
+    // tsup.config.ts 不在 tsconfig 的 program 里（它位于 rootDir 之外），
+    // 所以对它关闭需要类型信息的规则，交给 tsup 自己校验。
+    files: ['tsup.config.ts'],
+    ...tseslint.configs.disableTypeChecked,
   },
   {
     // CLI 入口依赖 console 输出，这里按场景关闭限制。

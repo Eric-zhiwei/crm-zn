@@ -1,13 +1,14 @@
 {
   "name": "mobile",
   "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.27.0"
+  "license": "ISC"
 }

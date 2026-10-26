@@ -1,0 +1,16 @@
+# 仓库内文本文件统一以 LF 存储与检出，避免与 Prettier 的 endOfLine 规则冲突。
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+
+pnpm-lock.yaml -diff linguist-generated

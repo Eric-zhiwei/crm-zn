@@ -20,5 +20,6 @@
     "esModuleInterop": true,
     "jsx": "react-jsx"
   },
+  "include": ["packages/*/src", "apps/*/src"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }

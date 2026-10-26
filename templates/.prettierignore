@@ -1,6 +1,7 @@
 # .prettierignore
+node_modules
 dist
+**/dist
 public
 .local
-node_modules
 pnpm-lock.yaml
